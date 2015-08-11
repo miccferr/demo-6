@@ -71,6 +71,7 @@ router.post('/allData', function(req, res) {
     var queryTotal = endpoint + url;
 
     /*FETCH SOME DATA*/
+    console.log('Sending the API query...');
     // api get request
     var req = http.request(queryTotal);
     req.on('response', function(response) {
@@ -136,6 +137,7 @@ router.post('/keyValueData', jsonParser, function(req, res) {
     }
 
     // launch the request
+    console.log('Sending the API query...');
     http.request(queryTotal, callback).end();
 
 });

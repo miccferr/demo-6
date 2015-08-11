@@ -65,6 +65,7 @@ $('.keyValueData').on('click', function() {
     var data = $('#query-osm').serializeArray();
 
     $.post('/getData/keyValueData', data, function(res) {
+        // nice pop-up with data structured in a table
         function jsonToTable(jsonObj) {
             console.log(jsonObj);
             var table = '';
@@ -73,44 +74,18 @@ $('.keyValueData').on('click', function() {
                 console.log(rows);
                 table += rows;
             });
-            console.log(table);
             return table
 
         };
-
+        // add pop-up 
         function onEachFeature(feature, layer) {
             if (feature.properties) {
                 layer.bindPopup("<table><th><tr></tr><td><b>Key</b></td><td><b>Value</b></td></th>" + jsonToTable(feature.properties.tags) + "</table>");
             }
         };
 
-        function filterFeature(feature, layer) {
-            if (feature.properties.tags.amenities === 'biergarten') {
-                return L.marker(latlng, geojsonMarkerOptions);
-            } else {
-                return L.marker(latlng);
-            }
-        };
-
-        // 	var geojsonMarkerOptions = {
-        //     radius: 8,
-        //     fillColor: "#ff7800",
-        //     color: "#000",
-        //     weight: 1,
-        //     opacity: 1,
-        //     fillOpacity: 0.8
-        // };
-
-        var geojsonMarkerOptions = L.icon({
-            iconUrl: 'public/images/beer.svg',
-            iconSize: [38, 95],
-            iconAnchor: [22, 94],
-            popupAnchor: [-3, -76]
-        });
-
-
+        // add data to map
         var geojsonFeature = res;
-
         L.geoJson(geojsonFeature, {
             onEachFeature: onEachFeature,
             pointToLayer: function(feature, latlng) {
