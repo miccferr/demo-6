@@ -48,3 +48,10 @@ span.label{
 .actions{
 	padding-top: 10px;
 }
+
+.navbar-list{
+  display: flex;
+}
+.navbar-item{
+  margin:auto;  
+}

@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var data = require('./routes/data');
 var osm = require('./routes/osm');
+var countData = require('./routes/countData');
 var app = express();
 
 // view engine setup 
@@ -28,7 +29,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/getData', data);
-
+/*============================
+=            TEST            =
+============================*/
+app.use('/test', countData);
+/*-----  End of TEST  ------*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -60,6 +65,7 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
 
 app.listen(3000)
 module.exports = app;

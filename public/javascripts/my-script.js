@@ -67,15 +67,14 @@ $('.keyValueData').on('click', function() {
     $.post('/getData/keyValueData', data, function(res) {
         // nice pop-up with data structured in a table
         function jsonToTable(jsonObj) {
-            console.log(jsonObj);
+            // stampa le tags
+            // console.log(jsonObj);
             var table = '';
             $.each(jsonObj, function(k, v) {
                 var rows = "<tr><td>" + k + "</td><td>" + v + "</td></tr>";
-                console.log(rows);
                 table += rows;
             });
             return table
-
         };
         // add pop-up 
         function onEachFeature(feature, layer) {
@@ -86,10 +85,11 @@ $('.keyValueData').on('click', function() {
 
         // add data to map
         var geojsonFeature = res;
+        console.log(geojsonFeature);
         L.geoJson(geojsonFeature, {
             onEachFeature: onEachFeature,
             pointToLayer: function(feature, latlng) {
-                return L.marker(latlng, geojsonMarkerOptions);
+                return L.marker(latlng);
             },
             // filter : filterFeature
         }).addTo(map);
@@ -97,3 +97,23 @@ $('.keyValueData').on('click', function() {
     });
 
 });
+
+/*============================
+=            TEST            =
+============================*/
+var dataArr;
+$('.test').on('click', function() {
+    $.get('/test', function(res) {
+        dataArr = res.elements;
+        console.log(dataArr);
+        dataArr.forEach(function(obj) {
+            if (obj.user) {
+                var user = obj.user;
+                console.log(user);
+            }
+        })
+    })
+})
+
+
+/*-----  End of TEST  ------*/

@@ -67,7 +67,7 @@ router.post('/allData', function(req, res) {
     var coords = req.body;
     var bbox = createCoordsFromObj(coords);
     // compose the api request
-    var url = '[out:json][timeout:25];(node(' + bbox + ');way(' + bbox + ');relation(' + bbox + '););out body;>;out skel qt;';
+    var url = '[out:json][timeout:25];(node(' + bbox + ');way(' + bbox + ');relation(' + bbox + '););out body;>;out skel qt meta;';
     var queryTotal = endpoint + url;
 
     /*FETCH SOME DATA*/
@@ -108,7 +108,7 @@ router.post('/keyValueData', jsonParser, function(req, res) {
     // http://overpass-api.de/query_form.html
     // converts OVPTurbo queries in compact URL-like format    
     // es: '[out:json][timeout:25];(node["amenity"="drinking_water"](50.7,7.1,50.8,7.2););out body;>;out skel qt;'
-    var queryOVP = '[out:json][timeout:25];(node[' + keyValue + '](' + createCoords(bbox) + ');way[' + keyValue + '](' + createCoords(bbox) + ');relation[' + keyValue + '](' + createCoords(bbox) + '););out body;>;out skel qt;'
+    var queryOVP = '[out:json][timeout:25];(node[' + keyValue + '](' + createCoords(bbox) + ');way[' + keyValue + '](' + createCoords(bbox) + ');relation[' + keyValue + '](' + createCoords(bbox) + '););out body;>;out skel qt meta;'
         // [out:json][timeout:25];(node["amenity"]();way["amenity"]();relation["amenity"](););out body;>;out skel qt;
         // API url to be called
     var queryTotal = endpoint + queryOVP
