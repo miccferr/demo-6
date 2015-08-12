@@ -64,12 +64,12 @@ gulp.task('jshint', function() {
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
-// templates JADE
-gulp.task('templates', function() {
-    return gulp.src('views/*.jade')
-        .pipe(jade({
-            pretty: true
-        }))
-        .on('error', gutil.log)
-        .pipe(gulp.dest('dist/'))
-});
+// NON MI SERVE UN TEMPLATE DI Jade PERCHé USO EXPRESS E CI PENSA LUI
+// gulp.task('jade', function() {
+//     return gulp.src('views/*.jade')
+//         .pipe(jade({
+//             pretty: true
+//         }))
+//         .on('error', gutil.log)
+//         .pipe(gulp.dest('dist/'))
+// });

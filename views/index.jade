@@ -1,36 +1,74 @@
 html
     head
-        link(rel='stylesheet', href='/stylesheets/bootstrap/dist/css/bootstrap.min.css')
+        //  Basic Page Needs
+        // –––––––––––––––––––––––––––––––––––––––––––––––––– 
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        title OSM Inspektor
+        meta(name='description', content='')
+        meta(name='author', content='Michele Ferretti')
+        
+        // Mobile Specific Metas
+        // ––––––––––––––––––––––––––––––––––––––––––––––––––
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        
+        // FONT
+        // ––––––––––––––––––––––––––––––––––––––––––––––––––
+        link(rel="stylesheet", href="//fonts.googleapis.com/css?family=Raleway:400,300,600", type="text/css")
+        
+        // CSS
+        // ––––––––––––––––––––––––––––––––––––––––––––––––––
+        // build:css 
+        link(rel="stylesheet", href="stylesheets/normalize.css")
+        link(rel="stylesheet", href="stylesheets/skeleton.css")
+        //- link(rel='stylesheet', href='/stylesheets/bootstrap/dist/css/bootstrap.min.css')
         link(rel='stylesheet', href='http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css')
         link(rel='stylesheet', href='/vendor/geocoder/Control.OSMGeocoder.css')
-        link(rel='stylesheet', href='/stylesheets/style.css')
-        
-        
-    body
-        .jumbotron
-            h1 OSM Inspektor
-            p OpenStreetMap statistics & Data Visualization tool
-            p v. 0.0.2
-            .btn-group.btn-group-lg
-                form(id="query-osm", action="/keyValueData", method="post")
-                    input(type="hidden", name="SWlat", id="SWlat")
-                    input(type="hidden", name="SWlng", id="SWlng")
-                    input(type="hidden", name="NElat", id="NElat")
-                    input(type="hidden", name="NElng", id="NElng")
-                    div.input
-                        span.label Key
-                        input(type="text", name="key")
-                    div.input
-                        span.label Value
-                        input(type="text", name="value")                    
-                        
-                    div.actions
-                        input(type="button", value="Get Key-Value Data").btn.btn-warning.keyValueData
-                p.btn.btn-success.btn-group-lg.allData Fetch All Data within Bbox
-                p.btn.btn-success.btn-group-lg.test TEST
+        link(rel="stylesheet", href="stylesheets/custom.css")
+        link(rel="stylesheet", href="stylesheets/style.css")
+        // endbuild
 
-        #map(style='height: 500px;')
-        .graphs
+        // Favicon
+        // ––––––––––––––––––––––––––––––––––––––––––––––––––
+        <link rel="icon" type="image/png" href="images/favicon.png">
+
+    body
+        // Primary Page Layout
+        // ––––––––––––––––––––––––––––––––––––––––––––––––––
+        .container
+            section.header
+                h1 OSM Inspektor
+                p OpenStreetMap statistics & Data Visualization tool
+                p v. 0.0.2
+            .navbar
+                .container
+                    ul.navbar-list
+                        each val in ['Get some data','Visualize them','Export a report']
+                            li.navbar-item
+                                a.navbar-link(href='')= val
+            .row.row-data
+                .twelve.column(style='margin-top: 10%')
+                    h4 Data Retrieval
+                    form(id="query-osm", action="/keyValueData", method="post")
+                        input(type="hidden", name="SWlat", id="SWlat")
+                        input(type="hidden", name="SWlng", id="SWlng")
+                        input(type="hidden", name="NElat", id="NElat")
+                        input(type="hidden", name="NElng", id="NElng")
+                        div
+                            div.input
+                                span.label Key
+                                input(type="text", name="key")
+                            div.input
+                                span.label Value
+                                input(type="text", name="value")                    
+                                
+                        div.actions
+                            input(type="button", value="Get Key-Value Data").btn.btn-warning.keyValueData
+                    p.button.allData Fetch All Data within Bbox
+                    p.button.test TEST
+            .row
+                #map(style='height: 500px;')
+                .graphs
 
         script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
         script(src='/public/stylesheets/bootstrap/dist/js/bootstrap.min.js')
@@ -38,3 +76,5 @@ html
         script(src='http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js')
         script(src='/vendor/geocoder/Control.OSMGeocoder.js')
         script(src='/javascripts/my-script.js')
+
+                    
