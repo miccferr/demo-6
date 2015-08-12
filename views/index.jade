@@ -21,7 +21,6 @@ html
         // build:css 
         link(rel="stylesheet", href="stylesheets/normalize.css")
         link(rel="stylesheet", href="stylesheets/skeleton.css")
-        //- link(rel='stylesheet', href='/stylesheets/bootstrap/dist/css/bootstrap.min.css')
         link(rel='stylesheet', href='http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css')
         link(rel='stylesheet', href='/vendor/geocoder/Control.OSMGeocoder.css')
         link(rel="stylesheet", href="stylesheets/custom.css")
@@ -43,10 +42,10 @@ html
             .navbar
                 .container
                     ul.navbar-list
-                        each val in ['Get some data','Visualize them','Export a report']
+                        each index,val in {'#row-data':'Get some data','#row-d3':'Visualize them','#row-report':'Export a report'}
                             li.navbar-item
-                                a.navbar-link(href='')= val
-            .row.row-data
+                                a.navbar-link(href=val )= index
+            #row-data.row.row-tabs
                 .twelve.column(style='margin-top: 10%')
                     h4 Data Retrieval
                     form(id="query-osm", action="/keyValueData", method="post")
@@ -64,17 +63,46 @@ html
                                 
                         div.actions
                             input(type="button", value="Get Key-Value Data").btn.btn-warning.keyValueData
+            .row
+                .twelve.column
                     p.button.allData Fetch All Data within Bbox
+                    //- cancella p-button display block
+            .row
+                .twelve.column
                     p.button.test TEST
+            .row
+                .twelve.column
+                    button.test TESTACCIADICAZZO
             .row
                 #map(style='height: 500px;')
                 .graphs
+            #row-d3.row.row-tabs.empty
+                p hi questa è tua mamma cagna
+            #row-report.row.row-tabs.empty
+                p anche qui!!!!
+            
+
 
         script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
-        script(src='/public/stylesheets/bootstrap/dist/js/bootstrap.min.js')
-
         script(src='http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js')
         script(src='/vendor/geocoder/Control.OSMGeocoder.js')
-        script(src='/javascripts/my-script.js')
+        script(src='/javascripts/main.js')
 
-                    
+        //- --------------------TEST-----------------------------
+        script.
+            var dataArr;
+            $('.test').on('click', function() {
+                $.get('/test', function(res) {
+                    dataArr = res.elements;
+                    console.log(dataArr);
+                    dataArr.forEach(function(obj) {
+                        if (obj.user) {
+                            var user = obj.user;
+
+                        }
+                    })
+                })
+            });
+        //- -------------------END-TEST-----------------------------
+
+    

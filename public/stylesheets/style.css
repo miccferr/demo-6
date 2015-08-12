@@ -16,10 +16,12 @@ a {
 .jumbotron h1,p{
 	padding-left: 20px;
 }
-.row-data{
+#row-data{
 	text-align: center;
 }
-
+.row-tabs{
+	margin-top: 2em;
+}
 .btn-group{
 	padding-left: 20px;
 }
@@ -61,4 +63,7 @@ span.label{
 }
 p.button{
 	display: block;
+}
+.row{
+	text-align: center;
 }
